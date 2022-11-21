@@ -1,4 +1,4 @@
-name: Manki Test
+name: Manki Markdown To Anki Conversion
 
 on:
   push:
@@ -11,9 +11,9 @@ jobs:
     steps:
       # Check-out repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v3
-      - name: Generate Anki Questions of "Manki"-Project
+      - name: Generate Anki Questions of manki-project
         id: manki
-        uses: raverank/manki@gh-action
+        uses: raverank/manki@v1.0.0
         with:
           project-root: './plain'
       - name: Create Pull Request
@@ -22,5 +22,5 @@ jobs:
         with:
           commit-message: Generate Anki Questions Package
           branch: question-generator/patch
-          title: Questions Generated
+          title: Add generated manki Anki-Package
           body: "Result of the conversion:\n ${{ steps.manki.outputs.conversion-log }}"
