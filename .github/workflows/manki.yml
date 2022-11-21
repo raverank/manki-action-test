@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Manki Test
 
 # Controls when the workflow will run
 on:
@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate Anki Questions from Markdownfile
         id: question-generator
-        uses: raverank/manki@39758a189ecbb036771b92e2a6d1b95df9e86315
+        uses: raverank/manki@gh-action
         with:
           project-root: './plain'
 
