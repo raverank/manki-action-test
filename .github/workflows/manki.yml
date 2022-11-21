@@ -1,38 +1,28 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Manki Test
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches: [ "master" ]
     paths:
     - 'questions/qa-*.md'
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Check-out repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v3
-
-      - name: Generate Anki Questions from Markdownfile
-        id: question-generator
+      - name: Generate Anki Questions of "Manki"-Project
+        id: manki
         uses: raverank/manki@gh-action
         with:
           project-root: './plain'
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Generate Anki Questions Package
+          branch: question-generator/patch
+          branch-suffix: timestamp
+          delete-branch: true
