@@ -22,5 +22,5 @@ jobs:
         with:
           commit-message: Generate Anki Questions Package
           branch: question-generator/patch
-          branch-suffix: timestamp
-          delete-branch: true
+          title: Questions Generated
+          body: "Result of the conversion:\n ${{ steps.manki.outputs.conversion-log }}"
