@@ -3,8 +3,6 @@ name: Manki Test
 on:
   push:
     branches: [ "master" ]
-    paths:
-    - 'questions/qa-*.md'
   workflow_dispatch:
 
 jobs:
